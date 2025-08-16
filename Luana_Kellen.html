@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Almoço Especial para Mulheres</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: #ffeef2;
+    }
+    .page {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .active {
+      display: flex;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff5e78;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+      opacity: 0.7;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff5e78;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+      }
+    }
+    .card {
+      z-index: 2;
+      width: 90%;
+      max-width: 400px;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      color: #5a3e36;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      border: 2px solid #ffb6c1;
+    }
+    .card h1 {
+      font-size: 22px;
+      color: #e75480;
+      margin-bottom: 12px;
+    }
+    .card p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .card p strong {
+      color: #000;
+    }
+    .nav-buttons {
+      margin-top: 20px;
+    }
+    .nav-buttons button {
+      margin: 5px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ffb6c1;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .nav-buttons button:hover {
+      background-color: #ffc0cb;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    for (let i = 0; i < 50; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.animationDuration = `${8 + Math.random() * 5}s`;
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <div id="pagina1" class="page active">
+    <div class="card">
+      <h1>Hoje é um dia especial!</h1>
+      <p><strong>Luana,</strong></p>
+      <p>
+        Tudo foi preparado com muito carinho para você.<br />
+        Cada detalhe, cada tempero, cada sorriso… pensado para que este momento seja leve,
+        acolhedor e cheio de significado.
+      </p>
+      <p>
+        Mais do que uma refeição, queremos que você se sinta cuidada, valorizada e lembrada com carinho.<br />
+        Que este instante seja uma pausa na rotina, um respiro de paz, um gesto de cuidado em forma de encontro.
+      </p>
+      <p>
+        Aproveite cada segundo, cada conversa, cada garfada.<br />
+        <strong>Este é o seu momento.</strong><br />
+        <strong>Você é importante. Você é especial.</strong>
+      </p>
+      <p>Com carinho,<br /><strong>Guilherme</strong></p>
+      <div class="nav-buttons">
+        <button onclick="mudarPagina('pagina2')">Ver Cardápio</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="pagina2" class="page">
+    <div class="card">
+      <h1>Cardápio</h1>
+      <p><strong>Entrada:</strong> Bruschetta</p>
+      <p><strong>Prato principal:</strong> Lasanha, arroz, salada</p>
+      <p><strong>Sobremesa:</strong> Mousse e Petit gâteau com sorvete</p>
+      <div class="nav-buttons">
+        <button onclick="mudarPagina('pagina1')">Voltar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function mudarPagina(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+</body>
+</html>
